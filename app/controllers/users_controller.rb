@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   end
 
-  # render :template, go into views and put on page template. 
+  # render :template, go into views and put on page template.
   # redirect_to url, will call corresponding method.
   # post /photos => create a new photo to the index of all photos
   def create
@@ -21,8 +21,6 @@ class UsersController < ApplicationController
     else
       render :new
     end
-  end
-
   end
 
   # get /photos   => return a list (index) of all photos
@@ -49,7 +47,7 @@ private
 
   # where does this come from? scope includes view.
   def user_params
-    perams.require(:user).permit(:username, :password)
+    params.require(:user).permit(:email, :password)
   end
 
 
