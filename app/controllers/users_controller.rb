@@ -25,7 +25,8 @@ class UsersController < ApplicationController
 
   # get /photos   => return a list (index) of all photos
   def index
-
+    @users = User.all
+    render :index
   end
 
   # delete /photos/:id => delete specific photo
@@ -35,7 +36,8 @@ class UsersController < ApplicationController
 
   # get /photos/:id => display a specific photo
   def show
-
+    @user = User.find(params[:id])
+    render :show
   end
 
   # put/patch /photos/:id  => update a specific photo

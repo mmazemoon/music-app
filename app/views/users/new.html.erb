@@ -1,12 +1,10 @@
 <h1>Sign up for our awesome Music App!</h1>
 
-<% unless @user.errors.empty? %>
-<% @user.errors.full_messages.each do |err| %>
-<%= err %>
-<br>
-<% end %>
-<% end %>
-<br>
+<ul>
+  <% @user.errors.full_messages.each do |err| %>
+    <li><%= err %></li>
+    <% end %>
+</ul>
 
 <form action="<%= users_url %>" method="post">
   <input  type="hidden"
