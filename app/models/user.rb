@@ -27,7 +27,7 @@ end
 
 def self.generate_session_token
   token = SecureRandom::urlsafe_base64(16)
-  while User.exists?(session_token: token)
+  while User.exists?(session_token: token)  # ActiveRecord method
     token = SecureRandom::urlsafe_base64(16)
   end
   token
