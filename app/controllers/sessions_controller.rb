@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if @user && @user.is_password?(pw)
         @user.reset_session_token!
         session[:session_token] = @user.session_token
-        redirect_to users_url(@user)
+        redirect_to users_url
       else
         flash.now[:errors] = "Wrong username or password"
         @user = User.new(email: em)
@@ -25,8 +25,7 @@ class SessionsController < ApplicationController
 
 # sign a user out
   def destroy
-    session[:session_token] = nil
-    @user.reset_session_token!
+    log_out_user
     redirect_to new_session_url
   end
 

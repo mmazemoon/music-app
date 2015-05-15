@@ -1,48 +1,26 @@
 class UsersController < ApplicationController
 
-  # get /photos/new => return an HTML form for creating a new photo
+#get /users/new return an HTML form to create a new User
   def new
     @user = User.new
     render :new
   end
 
-  # get /photos/:id/edit  => return an HTML form for editing a photo
-  def edit
-
-  end
-
-  # render :template, go into views and put on page template.
-  # redirect_to url, will call corresponding method.
-  # post /photos => create a new photo to the index of all photos
+# post /users add a user object to users
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_url(@user.id)
+        log_in_user!(user)
+        redirect_to users_url
     else
       render :new
     end
   end
 
-  # get /photos   => return a list (index) of all photos
-  def index
-    @users = User.all
-    render :index
-  end
-
-  # delete /photos/:id => delete specific photo
-  def destroy
-
-  end
-
-  # get /photos/:id => display a specific photo
+  # get /users display a specific user
   def show
     @user = current_user
     render :show
-  end
-
-  # put/patch /photos/:id  => update a specific photo
-  def update
-
   end
 
 private
@@ -51,13 +29,7 @@ private
   def user_params
     params.require(:user).permit(:email, :password)
   end
-
-
-
-
-
 end
-
 
 # edit is like new
 # update is like create
