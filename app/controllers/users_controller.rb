@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-        log_in_user!(user)
+        log_in_user!(@user)
         redirect_to users_url
     else
       render :new

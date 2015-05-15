@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
 
     @user = User.find_by_credentials(em, pw)
       if @user && @user.is_password?(pw)
-        @user.reset_session_token!
-        session[:session_token] = @user.session_token
+        log_in_user!(user)
         redirect_to users_url
       else
         flash.now[:errors] = "Wrong username or password"
@@ -28,5 +27,4 @@ class SessionsController < ApplicationController
     log_out_user
     redirect_to new_session_url
   end
-
 end

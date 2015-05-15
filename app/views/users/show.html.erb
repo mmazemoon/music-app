@@ -1,4 +1,4 @@
-<h1>Welcome <%= @user.email.capitalize %>!<h1>
+<h1>Welcome <%= @user.email %>!<h1>
 
 <form action="<%= session_url %>" method="post">
   <input type="hidden" name="_method" value="delete">
