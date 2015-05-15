@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_url(@user.id)
+      redirect_to users_url(@user.id)
     else
       render :new
     end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   # get /photos/:id => display a specific photo
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     render :show
   end
 
