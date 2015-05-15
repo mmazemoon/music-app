@@ -1,11 +1,13 @@
 class SessionsController < ApplicationController
-
+  
   def create
     # fail
     em = params[:user][:email]
     pw = params[:user][:password]
     @user = User.find_by_credentials(em, pw)
       if @user && @user.is_password?(pw)
+        @user.reset_session_token!
+        session[:session_token] = @user.session_token
         redirect_to user_url(@user)
       else
         flash[:errors] = "Wrong username or password"
