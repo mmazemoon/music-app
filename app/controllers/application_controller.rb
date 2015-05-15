@@ -6,10 +6,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-    @curr_user ||= User.find_by(session_token: session[:session_token])
+    @current_user ||= User.find_by(session_token: session[:session_token])
   end
 end
 
 # controllers will always have the params and session hash available to them
 # session hash - a form of an encrypted cookie
-git 
